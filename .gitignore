@@ -47,3 +47,5 @@ vite.config.*.timestamp*
 .next
 out
 chromadb/*
+
+.env
