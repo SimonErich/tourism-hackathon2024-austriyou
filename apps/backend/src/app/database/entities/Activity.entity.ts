@@ -1,13 +1,13 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class PersonaEntity {
+export class ActivityEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ type: 'varchar', length: 255 })
-  uuid: string;
+  name: string;
 
-  @Column({ type: 'varchar', length: 255 })
-  country: string;
+  @Column({ type: 'longtext' })
+  description: string;
 }
