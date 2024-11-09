@@ -11,7 +11,16 @@ module.exports = {
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['var(--font-source-sans)'],
+      },
+      colors: {
+        primary: '#DA121A',
+        grey: '#3C3C3C',
+        white: '#FFFFFF',
+      },
+    },
   },
   plugins: [],
 };
