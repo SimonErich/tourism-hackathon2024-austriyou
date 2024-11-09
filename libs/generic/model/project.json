@@ -1,0 +1,19 @@
+{
+  "name": "model",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/generic/model/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/generic/model",
+        "main": "libs/generic/model/src/index.ts",
+        "tsConfig": "libs/generic/model/tsconfig.lib.json",
+        "assets": ["libs/generic/model/*.md"]
+      }
+    }
+  }
+}
