@@ -15,6 +15,6 @@ export class PersonaController {
 
   @Get()
   public async getPersona(): Promise<IPersona[]> {
-    return [];
+    return this.personaService.getPersonas();
   }
 }
