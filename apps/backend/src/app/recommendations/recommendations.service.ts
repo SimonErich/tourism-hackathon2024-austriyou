@@ -1,32 +1,38 @@
 import { Injectable } from '@nestjs/common';
-import { ChromaClient } from 'chromadb';
+import { ChromaClient, IncludeEnum } from 'chromadb';
+import { Collection } from './chromatypes';
 
 @Injectable()
 export class RecommendationsService {
   private readonly client: ChromaClient;
-  private collection;
+  // Somebody not asleep, can we have type here?
+  private collection: Collection;
 
   constructor() {
     console.log('starting RecommendationsService');
 
     this.client = new ChromaClient();
-    this.init()
-      .then(() => {
-        console.log('RecommendationsService initialized');
-      })
-      .catch((err) => {
-        console.error('RecommendationsService failed to initialize', err);
-      });
+    this.init().catch((err) => {
+      console.error('RecommendationsService failed to initialize', err);
+    });
   }
 
   private async init() {
-    this.collection = await this.client.getOrCreateCollection({
+    this.client.deleteCollection({ name: 'recommendations' });
+    this.collection = (await this.client.getOrCreateCollection({
       name: 'recommendations',
+      metadata: { 'hnsw:space': 'cosine' },
+    })) as unknown as Collection;
+    // TODO: remove these hardcoded entries
+    await this.collection.add({
+      ids: ['1', '2', '3'],
+      documents: ['skiing', 'snowboarding', 'hiking'],
     });
-    this.collection.add({
-      ids: ['1', '2'],
-      documents: ['This text says hello', 'this text says goodbye'],
-    });
+    const count = await this.collection.count();
+    console.log(
+      'Recommendation Service initialized. Number of items in collection: ',
+      count
+    );
   }
 
   public async addEntries(entries: Entry[]) {
@@ -36,16 +42,29 @@ export class RecommendationsService {
     });
   }
 
-  public async getRecommendationsByString(
-    query: string,
-    nResults = 2
-  ): Promise<string[]> {
+  public async getRecommendationsByString(query: string, nResults = 5) {
     const results = await this.collection.query({
-      queryTexts: query, // Chroma will embed this for you
-      nResults, // how many results to return
+      queryTexts: query,
+      nResults,
     });
-    console.log('results', results.documents);
-    return results.documents;
+    return results;
+  }
+
+  public async getEntriesByIds(ids: string[]) {
+    return await this.collection.get({
+      ids,
+      include: ['embeddings' as IncludeEnum.Embeddings],
+    });
+  }
+
+  public async getSimilarEntries(ids: string[], nResults = 5) {
+    const entries = await this.getEntriesByIds(ids);
+    const results = await this.collection.query({
+      queryEmbeddings: entries.embeddings,
+      nResults,
+    });
+
+    return results;
   }
 }
 

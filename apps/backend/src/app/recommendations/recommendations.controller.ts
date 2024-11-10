@@ -5,10 +5,20 @@ export class RecommendationsController {
   constructor(
     private readonly recommendationsService: RecommendationsService
   ) {}
+  // For testing
   @Get()
   public async getRecommendations(): Promise<string> {
-    const recommendations =
-      await this.recommendationsService.getRecommendationsByString('hello');
-    return JSON.stringify(recommendations);
+    const baseRecommandation =
+      await this.recommendationsService.getRecommendationsByString('skiing', 5);
+
+    const similarRecommandation =
+      await this.recommendationsService.getSimilarEntries(
+        baseRecommandation.ids[0],
+        5
+      );
+
+    console.log('similarRecommandation', similarRecommandation.documents);
+
+    return JSON.stringify(similarRecommandation);
   }
 }
