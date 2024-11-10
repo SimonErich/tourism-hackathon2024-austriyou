@@ -13,10 +13,16 @@ export class ActivityEntity {
   id: number;
 
   @Column({ type: 'varchar', length: 255 })
+  slug: string;
+
+  @Column({ type: 'varchar', length: 255 })
   name: string;
 
   @Column({ type: 'longtext' })
   description: string;
+
+  @Column({ type: 'varchar', length: 255 })
+  image: string;
 
   @ManyToMany(() => PersonaEntity, (persona) => persona.activities)
   @JoinTable()

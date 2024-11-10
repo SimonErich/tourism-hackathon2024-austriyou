@@ -44,7 +44,7 @@ export const ActivitiesPicker = ({ activities }: ActivitiesPickerProps) => {
         <div className="rounded-3xl p-4 border-2 border-primary w-96 h-full flex flex-col">
           <div className="relative border-1 border-grey rounded-2xl overflow-hidden flex-1">
             <Image
-              src={currentActivity?.images || ''}
+              src={currentActivity?.image || ''}
               alt={currentActivity?.activity || ''}
               className="object-cover"
               fill
@@ -52,7 +52,7 @@ export const ActivitiesPicker = ({ activities }: ActivitiesPickerProps) => {
           </div>
 
           <h2 className="text-2xl text-center text-primary py-4">
-            {currentActivity?.activity}
+            {currentActivity?.name}
           </h2>
         </div>
 
@@ -93,7 +93,7 @@ export const SmallCard = ({ activity }: { activity: Activity }) => {
     >
       <div className="relative aspect-square rounded-xl overflow-hidden">
         <Image
-          src={activity.images}
+          src={activity.image}
           alt={activity.activity}
           className="object-cover"
           fill
