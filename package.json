@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "frontend": "nx dev frontend",
+    "frontend:build": "nx build frontend",
     "frontend:build-and-start": "nx build frontend && nx start frontend --port 3333"
   },
   "private": true,

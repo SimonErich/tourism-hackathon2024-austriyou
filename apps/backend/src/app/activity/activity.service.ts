@@ -10,7 +10,9 @@ export class ActivityService {
     @InjectRepository(ActivityEntity)
     private readonly activityRepository: Repository<ActivityEntity>
   ) {}
-  public async getActivities(): Promise<ActivityEntity[]> {
+
+  public async getActivities(countryCode: string): Promise<ActivityEntity[]> {
+    // TODO: add the logic to get activities by country CODE
     return await this.activityRepository.find();
   }
 

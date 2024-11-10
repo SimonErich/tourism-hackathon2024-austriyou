@@ -1,13 +1,12 @@
-import { mockActivities } from '../mock/activities';
+import { AxiosResponse } from 'axios';
 import { CountryCode } from '../mock/countries';
+import { apiClient } from '../utils/apiClient';
 import { ActivitiesPicker } from './activities-picker';
-import { ActivityCards, Card, CardStack } from './activity-card';
 
 async function fetchData(countryCode: CountryCode) {
-  const activities = mockActivities;
-  const foo = await fetch(
-    `https://restcountries.com/v3.1/alpha/${countryCode}`
-  );
+  const response: AxiosResponse = await apiClient.get(`/api/activity?countryCode=${countryCode}`);
+  const activities = response.data;
+
   return { activities };
 }
 
@@ -15,7 +14,7 @@ export default async function Picker({
   searchParams,
 }: {
   searchParams: { country: CountryCode };
-}) {
+  }) {
   const { activities } = await fetchData(searchParams.country);
   return <ActivitiesPicker activities={activities} />;
 }

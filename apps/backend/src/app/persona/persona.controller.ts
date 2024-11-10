@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { Persona } from '@tasm/model';
 import { PersonaService } from './persona.service';
 
@@ -13,8 +13,13 @@ export class PersonaController {
     return this.personaService.createPersona(body.country);
   }
 
-  @Get()
-  public async getPersonas(): Promise<Persona[]> {
-    return await this.personaService.getPersonas();
+  // @Get()
+  // public async getPersonas(): Promise<Persona[]> {
+  //   return await this.personaService.getPersonas();
+  // }
+
+  @Get(':id')
+  public async getPersona(@Param('id') id: string): Promise<Persona> {
+    return await this.personaService.getPersonaById(id);
   }
 }

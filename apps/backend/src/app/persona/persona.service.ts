@@ -29,4 +29,8 @@ export class PersonaService {
   public async getPersonas(): Promise<PersonaEntity[]> {
     return await this.personaRepository.find();
   }
+
+  public async getPersonaById(id: string): Promise<PersonaEntity> {
+    return await this.personaRepository.findOne({ where: { uuid: id } });
+  }
 }

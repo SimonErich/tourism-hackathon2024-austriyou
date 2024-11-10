@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { Activity } from '@tasm/model';
 import { ActivityService } from './activity.service';
 
@@ -7,8 +7,10 @@ export class ActivityController {
   constructor(private readonly activityService: ActivityService) {}
 
   @Get()
-  async getActivities(): Promise<Activity[]> {
-    return this.activityService.getActivities();
+  async getActivities(
+    @Query('countryCode') countryCode: string
+  ): Promise<Activity[]> {
+    return this.activityService.getActivities(countryCode);
   }
 
   @Post()
