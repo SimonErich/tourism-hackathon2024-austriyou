@@ -1,12 +1,33 @@
-# Tasm
+# AustriYou
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+Find activities in Austria based on Culture and Preferences.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+## How it works
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+### Recommendation Engine
+
+![image](./images/AustriyouGraph.png)
+
+## Tech stack
+
+- React
+- NestJS
+- ChromaDB
+- MySQL
+
+## Set up
+
+```sh
+npm install
+```
 
 ## Run tasks
+
+Start vector database container
+
+```sh
+docker compose up
+```
 
 To run the dev server for your app, use:
 
