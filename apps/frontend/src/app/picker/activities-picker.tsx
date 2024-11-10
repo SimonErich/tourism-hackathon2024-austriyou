@@ -5,6 +5,7 @@ import { Activity } from '../mock/activities';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Chamois } from '../ui/chamois';
+import { CloseIcon, HeartIcon } from '../ui/icons';
 import Link from 'next/link';
 
 interface ActivitiesPickerProps {
@@ -59,24 +60,29 @@ export const ActivitiesPicker = ({ activities }: ActivitiesPickerProps) => {
 
         <div className="flex gap-4 items-center justify-center">
           <button
-            className="rounded-full border-2 border-primary size-16"
+            className="rounded-full border-2 border-primary size-16 flex items-center justify-center text-primary"
             onClick={() => {
               handleNextActivity();
             }}
           >
-            x
+            <CloseIcon />
           </button>
 
-          <Link href={`/results/${window.localStorage.getItem('persona_id')}`} className="button">done</Link>
+          <Link
+            href={`/results/${window.localStorage.getItem('persona_id')}`}
+            className="button"
+          >
+            done
+          </Link>
 
           <button
-            className="rounded-full border-2 border-primary size-16"
+            className="rounded-full border-2 border-primary size-16 flex items-center justify-center text-primary"
             onClick={() => {
               setLikedActivities([...(likedActivities || []), currentActivity]);
               handleNextActivity();
             }}
           >
-            ❤️
+            <HeartIcon />
           </button>
         </div>
       </div>
