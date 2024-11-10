@@ -13,7 +13,7 @@ import { ActivityEntity } from './entities/Activity.entity';
       database: process.env.DB_NAME,
       password: process.env.DB_PASSWORD,
       entities: [PersonaEntity, ActivityEntity],
-      synchronize: true,
+      synchronize: false,
     }),
   ],
 })
