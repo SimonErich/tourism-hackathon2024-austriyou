@@ -5,6 +5,7 @@ import { Activity } from '../mock/activities';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Chamois } from '../ui/chamois';
+import Link from 'next/link';
 
 interface ActivitiesPickerProps {
   activities: Activity[];
@@ -66,7 +67,7 @@ export const ActivitiesPicker = ({ activities }: ActivitiesPickerProps) => {
             x
           </button>
 
-          <button className="button">done</button>
+          <Link href={`/results/${window.localStorage.getItem('persona_id')}`} className="button">done</Link>
 
           <button
             className="rounded-full border-2 border-primary size-16"
