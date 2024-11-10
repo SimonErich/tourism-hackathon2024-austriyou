@@ -1,0 +1,11 @@
+GET http://localhost:3000/api/activity  
+
+###
+
+POST http://localhost:3000/api/activity
+Content-Type: application/json
+
+{
+        "name": "Cultural Tours",
+        "description": "Cultural tours in Salzburg allow visitors to explore the rich history and heritage of the region. From visiting historic sites and museums to experiencing local traditions and festivals, there is much to discover in this culturally vibrant area."
+    }

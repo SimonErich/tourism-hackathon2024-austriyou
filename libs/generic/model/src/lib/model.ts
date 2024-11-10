@@ -1,15 +1,15 @@
-export interface IPersona {
+export interface Persona {
   uuid: string;
   country: string;
 }
 
-export interface IActivity {
+export interface Activity {
   name: string;
   description: string;
 }
-export interface IPointOfInterest {
+export interface PointOfInterest {
   name: string;
   location: string;
   description: string;
-  relatedActivities: IActivity[];
+  relatedActivities: Activity[];
 }

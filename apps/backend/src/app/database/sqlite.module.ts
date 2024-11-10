@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Persona } from './entities/Persona.entity';
+import { PersonaEntity } from './entities/Persona.entity';
+import { ActivityEntity } from './entities/Activity.entity';
 
 @Module({
   imports: [
@@ -11,7 +12,7 @@ import { Persona } from './entities/Persona.entity';
       username: process.env.DB_USERNAME,
       database: process.env.DB_NAME,
       password: process.env.DB_PASSWORD,
-      entities: [Persona],
+      entities: [PersonaEntity, ActivityEntity],
       synchronize: true,
     }),
   ],

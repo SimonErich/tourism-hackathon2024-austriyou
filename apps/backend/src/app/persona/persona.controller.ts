@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { IPersona } from '@tasm/model';
+import { Persona } from '@tasm/model';
 import { PersonaService } from './persona.service';
 
 @Controller('persona')
@@ -14,7 +14,7 @@ export class PersonaController {
   }
 
   @Get()
-  public async getPersona(): Promise<IPersona[]> {
-    return this.personaService.getPersonas();
+  public async getPersonas(): Promise<Persona[]> {
+    return await this.personaService.getPersonas();
   }
 }
