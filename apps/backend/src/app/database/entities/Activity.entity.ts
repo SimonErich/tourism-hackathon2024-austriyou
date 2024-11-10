@@ -1,6 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { PersonaEntity } from './Persona.entity';
 
-@Entity()
+@Entity('activties')
 export class ActivityEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -10,4 +17,8 @@ export class ActivityEntity {
 
   @Column({ type: 'longtext' })
   description: string;
+
+  @ManyToMany(() => PersonaEntity, (persona) => persona.activities)
+  @JoinTable()
+  personas: PersonaEntity[];
 }

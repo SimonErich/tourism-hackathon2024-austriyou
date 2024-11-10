@@ -1,0 +1,7 @@
+POST http://localhost:3000/api/like
+Content-Type: application/json
+
+{
+    "uuid": "6b68d40c-4ea7-48f8-b527-7ddacf131173",
+    "activityId": 2
+}

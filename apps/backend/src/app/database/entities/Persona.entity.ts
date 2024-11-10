@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { ActivityEntity } from './Activity.entity';
 
-@Entity()
+@Entity('personas')
 export class PersonaEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -10,4 +11,7 @@ export class PersonaEntity {
 
   @Column({ type: 'varchar', length: 255 })
   country: string;
+
+  @OneToMany(() => ActivityEntity, (activity) => activity.personas)
+  activities: ActivityEntity[];
 }
