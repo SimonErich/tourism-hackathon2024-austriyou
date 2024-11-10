@@ -12,6 +12,18 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+  images: {
+    domains: [
+      'www.upperaustria.com',
+      'media.tourdata.at',
+      'res.klook.com',
+      'automotivemuseumguide.com',
+      'fuutazbsb.filerobot.com',
+      'encrypted-tbn0.gstatic.com',
+      'cdn.salzburgerland.com',
+      '*',
+    ],
+  },
 };
 
 const plugins = [
